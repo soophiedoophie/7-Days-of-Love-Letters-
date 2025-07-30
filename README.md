@@ -22,7 +22,6 @@ Every day, a new letter is unlocked — starting August 1 — counting down seve
 | 5   | What I Dream About           | Aug 5, 2025 |
 | 6   | If You Ever Feel Alone       | Aug 6, 2025 |
 | 7   | You Make Me the Happiest     | Aug 7, 2025 |
-| 🗝️   | (Secret gift unlocks)        | after Aug 7 |
 
 ## 🚀 How to View
 
@@ -38,4 +37,5 @@ Or clone the project and open `index.html` locally in your browser.
 
 ---
 
-Made with love for someone very special 💗  
+Made with love for someone very special 💗 
+<sub>✨ And maybe... just maybe, something magical unlocks after Day 7.</sub>
