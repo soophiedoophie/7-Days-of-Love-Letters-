@@ -106,6 +106,56 @@ h1 {
   opacity: 0.85;
 }
 
+@media (max-width: 600px) {
+  .container {
+    padding: 1rem;
+  }
+  .days {
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .days .row {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .day-btn {
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    min-width: 70px;
+  }
+  .day-btn-group {
+    min-width: 70px;
+  }
+  .modal-content {
+    padding: 1rem;
+    font-size: 0.95rem;
+    max-width: 98%;
+  }
+  .comment-section {
+    max-width: 98vw;
+    padding: 1rem 0.5rem;
+  }
+  #comment-form {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  #comment-input, #comment-author {
+    width: 100%;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+  }
+  #comment-form button {
+    width: 100%;
+    font-size: 1rem;
+    margin-top: 0.2rem;
+  }
+  #comment-list li {
+    font-size: 0.92rem;
+    padding: 0.5rem 0.5rem;
+  }
+}
+
 .comment-section {
   margin-top: 2.5rem;
   padding: 1.5rem 1rem;
@@ -126,6 +176,14 @@ h1 {
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
+#comment-author {
+  width: 90px;
+  padding: 0.3rem;
+  border-radius: 8px;
+  border: 1px solid #ffd6e0;
+  font-size: 0.85rem;
+}
+
 #comment-input {
   flex: 1;
   padding: 0.5rem;
@@ -183,7 +241,7 @@ h1 {
 .comment-actions button:hover {
   background: #ffeef2;
 }
-}
+
 .comment-author {
   font-size: 0.8rem;
   color: #d67d94;
