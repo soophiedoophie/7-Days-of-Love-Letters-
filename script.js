@@ -78,3 +78,91 @@ document.querySelectorAll(".day-btn").forEach((btn) => {
 closeBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
 });
+
+// --- Comment Feature ---
+const commentForm = document.getElementById('comment-form');
+const commentInput = document.getElementById('comment-input');
+const commentAuthor = document.getElementById('comment-author');
+const commentList = document.getElementById('comment-list');
+
+function loadComments() {
+  const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+  commentList.innerHTML = '';
+  comments.forEach((item, idx) => {
+    const li = document.createElement('li');
+    const authorSpan = document.createElement('span');
+    authorSpan.className = 'comment-author';
+    authorSpan.textContent = item.author || 'Anonymous';
+    li.appendChild(authorSpan);
+    const textDiv = document.createElement('div');
+    textDiv.textContent = item.text;
+    textDiv.className = 'comment-text';
+    li.appendChild(textDiv);
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'comment-time';
+    timeSpan.textContent = item.time;
+    li.appendChild(timeSpan);
+
+    // Actions
+    const actionsDiv = document.createElement('div');
+    actionsDiv.className = 'comment-actions';
+    // Edit button
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.onclick = function() {
+      // Edit mode
+      textDiv.style.display = 'none';
+      const editInput = document.createElement('input');
+      editInput.type = 'text';
+      editInput.value = item.text;
+      editInput.maxLength = 100;
+      editInput.style.fontSize = '0.95rem';
+      editInput.style.marginBottom = '0.2rem';
+      li.insertBefore(editInput, timeSpan);
+      editBtn.style.display = 'none';
+      deleteBtn.style.display = 'none';
+      const saveBtn = document.createElement('button');
+      saveBtn.textContent = 'Save';
+      saveBtn.onclick = function() {
+        const newText = editInput.value.trim();
+        if (newText) {
+          comments[idx].text = newText;
+          localStorage.setItem('comments', JSON.stringify(comments));
+          loadComments();
+        }
+      };
+      actionsDiv.appendChild(saveBtn);
+    };
+    actionsDiv.appendChild(editBtn);
+    // Delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.onclick = function() {
+      comments.splice(idx, 1);
+      localStorage.setItem('comments', JSON.stringify(comments));
+      loadComments();
+    };
+    actionsDiv.appendChild(deleteBtn);
+    li.appendChild(actionsDiv);
+    commentList.appendChild(li);
+  });
+}
+
+if (commentForm && commentInput && commentList) {
+  commentForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const text = commentInput.value.trim();
+    const author = commentAuthor.value.trim() || 'Anonymous';
+    if (text) {
+      const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+      const now = new Date();
+      const timeStr = now.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      comments.push({ text, author, time: timeStr });
+      localStorage.setItem('comments', JSON.stringify(comments));
+      commentInput.value = '';
+      commentAuthor.value = '';
+      loadComments();
+    }
+  });
+  loadComments();
+}
