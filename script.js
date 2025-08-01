@@ -50,17 +50,24 @@ const letters = [
   You make the world feel less scary and my heart feel more whole.<br>
   Even when I didn’t think I deserved it, you gave me love.<br>
   I don’t know what I did to meet you, but I thank the universe every single day.<br>
-  You make me the happiest—and I hope I make you feel the same.`
+  You make me the happiest—and I hope I make you feel the same.<br>
+  <span class="egg" data-egg="7" style="font-size:2rem;cursor:pointer;">🎁</span>`
 ];
 
-const startDate = new Date("2025-08-01");
+const startDate = new Date(2025, 7, 1); // 8월은 7 (0-indexed)
+const day7UnlockDate = new Date(2025, 7, 7);
 const today = new Date();
-today.setHours(0, 0, 0, 0); // 시간 초기화
+today.setHours(0, 0, 0, 0); // 시간 초기화 (로컬 기준)
 
 document.querySelectorAll(".day-btn").forEach((btn) => {
   const day = parseInt(btn.dataset.day);
-  const unlockDate = new Date(startDate);
-  unlockDate.setDate(startDate.getDate() + (day - 1));
+  let unlockDate;
+  if (day === 7) {
+    unlockDate = day7UnlockDate;
+  } else {
+    unlockDate = new Date(startDate);
+    unlockDate.setDate(startDate.getDate() + (day - 1));
+  }
 
   if (today >= unlockDate) {
     btn.addEventListener("click", () => {
@@ -77,6 +84,13 @@ document.querySelectorAll(".day-btn").forEach((btn) => {
 
 closeBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
+});
+
+// Day 7 이스터에그 클릭 이벤트
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('egg')) {
+    alert('Gift for the best bf! 🎁');
+  }
 });
 
 // --- Comment Feature ---
