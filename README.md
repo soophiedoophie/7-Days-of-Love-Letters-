@@ -26,7 +26,7 @@ Every day, a new letter is unlocked — starting August 1 — counting down seve
 ## 🚀 How to View
 
 > Visit the website here:  
-> 👉 [https://github.com/soophiedoophie/7-Days-of-Love-Letters-]
+> 👉 [https://soophiedoophie.github.io/7-Days-of-Love-Letters-/]
 
 Or clone the project and open `index.html` locally in your browser.
 
